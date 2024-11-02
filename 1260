@@ -1,0 +1,29 @@
+from tronpy import Tron
+
+# راه‌اندازی کلاینت ترون
+client = Tron()
+
+# آدرس دریافت‌کننده
+receiver_address = 'TB22QfzxJRm8NPQLmw4BovGF4BEfUNXuHc'
+
+# مقدار ارسال (به واحد کوچک)
+amount = 100_000_000 # مقدار 100.000 USDT معادل 100000000 در واحد کوچک
+
+# کلید خصوصی فرستنده (لطفاً با کلید خصوصی واقعی خود جایگزین کنید)
+sender_private_key = 'YOUR_SENDER_PRIVATE_KEY_HERE'
+
+# کلید خصوصی دریافت‌کننده (این مورد معمولاً لازم نیست)
+receiver_private_key = '90de8d4365da8420391c573dc32909cf17f3dd53ec581251ea13473efa213cf7'
+
+# ایجاد تراکنش
+tx = (
+    client.trx.transfer(receiver_address, amount)
+    .build()
+    .sign(sender_private_key)
+)
+
+# پخش تراکنش
+result = tx.broadcast()
+
+# چاپ نتیجه تراکنش
+print(result)
